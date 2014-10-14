@@ -36,7 +36,7 @@
     var tick = function() {
 
       // Update game state.
-      self.update();
+      self.update(gameSize);
 
       // Draw game bodies.
       self.draw(screen, gameSize);
@@ -53,7 +53,7 @@
   Game.prototype = {
 
     // **update()** runs the main game logic.
-    update: function() {
+    update: function(gameSize) {
       var self = this;
 
       // `notCollidingWithAnything` returns true if passed body
@@ -69,7 +69,7 @@
 	  // stillVisibleOnScreen returns true if passed body
 	  // is within the canvas
 	  var stillVisibleOnScreen = function(b1) {
-		return b1.center.x > 0 && b1.center.y > 0 && b1.center.x < this.gameSize.x && b1.center.y < this.gameSize.y;
+		return b1.center.x > 0 && b1.center.y > 0 && b1.center.x < gameSize.x && b1.center.y < gameSize.y;
 	  };
 
 	  // Throw away bodies that have moved beyone the edge of the screen.
