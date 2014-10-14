@@ -66,6 +66,18 @@
       // will never be updated or draw again.
       this.bodies = this.bodies.filter(notCollidingWithAnything);
 
+	  // stillVisibleOnScreen returns true if passed body
+	  // is within the 300x300 canvas
+	  var stillVisibleOnScreen = function(b1) {
+		return b1.center.x > 0 && b1.center.y > 0 && b1.center.x < 300 && b1.center.y < 300;
+	  };
+
+	  // Throw away bodies that have moved beyone the edge of the screen.
+	  this.bodies = this.bodies.filter(stillVisibleOnScreen);
+
+      //Use for debugging to show number of bodies in the original code keeps rising
+	  //console.log("Number of bodies " + this.bodies.length );
+
       // Call update on every body.
       for (var i = 0; i < this.bodies.length; i++) {
         this.bodies[i].update();
@@ -191,13 +203,16 @@
 
     // **update()** updates the state of the player for a single tick.
     update: function() {
-      // If left cursor key is down...
-      if (this.keyboarder.isDown(this.keyboarder.KEYS.LEFT)) {
+      // If left cursor key is down and we're not too close to the edge...
+      // (Don't let the player move off the screen or it will get filtered out)
+      if (this.keyboarder.isDown(this.keyboarder.KEYS.LEFT) &&
+	      this.center.x - this.size.x/2 > 0 ) {
 
         // ... move left.
         this.center.x -= 2;
 
-      } else if (this.keyboarder.isDown(this.keyboarder.KEYS.RIGHT)) {
+      } else if (this.keyboarder.isDown(this.keyboarder.KEYS.RIGHT) &&
+                 this.center.x + this.size.x/2 < 300) {
         this.center.x += 2;
       }
 
