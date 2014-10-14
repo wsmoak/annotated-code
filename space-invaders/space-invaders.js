@@ -67,9 +67,9 @@
       this.bodies = this.bodies.filter(notCollidingWithAnything);
 
 	  // stillVisibleOnScreen returns true if passed body
-	  // is within the 300x300 canvas
+	  // is within the canvas
 	  var stillVisibleOnScreen = function(b1) {
-		return b1.center.x > 0 && b1.center.y > 0 && b1.center.x < 300 && b1.center.y < 300;
+		return b1.center.x > 0 && b1.center.y > 0 && b1.center.x < this.gameSize.x && b1.center.y < this.gameSize.y;
 	  };
 
 	  // Throw away bodies that have moved beyone the edge of the screen.
