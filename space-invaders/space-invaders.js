@@ -193,6 +193,7 @@
   var Player = function(game, gameSize) {
     this.game = game;
     this.size = { x: 15, y: 15 };
+	this.gameSize = gameSize;
     this.center = { x: gameSize.x / 2, y: gameSize.y - this.size.y * 2 };
 
     // Create a keyboard object to track button presses.
@@ -212,7 +213,7 @@
         this.center.x -= 2;
 
       } else if (this.keyboarder.isDown(this.keyboarder.KEYS.RIGHT) &&
-                 this.center.x + this.size.x/2 < 300) {
+                 this.center.x + this.size.x/2 < this.gameSize.x) {
         this.center.x += 2;
       }
 
