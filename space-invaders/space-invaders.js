@@ -196,6 +196,8 @@
 	this.gameSize = gameSize;
     this.center = { x: gameSize.x / 2, y: gameSize.y - this.size.y * 2 };
 
+    this.gunHeat = 0; //limits the number of bullets fired at once
+
     // Create a keyboard object to track button presses.
     this.keyboarder = new Keyboarder();
   };
@@ -220,6 +222,7 @@
       // If S key is down...
       if (this.keyboarder.isDown(this.keyboarder.KEYS.S)) {
         // ... create a bullet just above the player that will move upwards...
+        if ( this.gunHeat < 4 ) {
         var bullet = new Bullet({ x: this.center.x, y: this.center.y - this.size.y - 10 },
                                 { x: 0, y: -7 });
 
@@ -231,8 +234,14 @@
 
         // ... and play the shoot sound.
         this.game.shootSound.play();
-      }
-    }
+
+        this.gunHeat += 1; 
+        }
+      } //if key S down
+
+      this.gunHeat -= .05; //this happens 60 times a second
+
+    }//end update
   };
 
   // Bullet
