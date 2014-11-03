@@ -223,20 +223,20 @@
       if (this.keyboarder.isDown(this.keyboarder.KEYS.S)) {
         // ... create a bullet just above the player that will move upwards...
         if ( this.gunHeat < 4 ) {
-        var bullet = new Bullet({ x: this.center.x, y: this.center.y - this.size.y - 10 },
-                                { x: 0, y: -7 });
+          var bullet = new Bullet({ x: this.center.x, y: this.center.y - this.size.y - 10 },
+                                  { x: 0, y: -7 });
 
-        // ... add the bullet to the game...
-        this.game.addBody(bullet);
+          // ... add the bullet to the game...
+          this.game.addBody(bullet);
 
-        // ... rewind the shoot sound...
-        this.game.shootSound.load();
+          // ... rewind the shoot sound...
+          this.game.shootSound.load();
 
-        // ... and play the shoot sound.
-        this.game.shootSound.play();
+          // ... and play the shoot sound.
+          this.game.shootSound.play();
 
-        // each shot 'heats up' the gun
-        this.gunHeat += 1; 
+          // each shot 'heats up' the gun
+          this.gunHeat += 1; 
         }
       } //if key S down
 
