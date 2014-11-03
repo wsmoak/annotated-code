@@ -235,11 +235,15 @@
         // ... and play the shoot sound.
         this.game.shootSound.play();
 
+        // each shot 'heats up' the gun
         this.gunHeat += 1; 
         }
       } //if key S down
 
-      this.gunHeat -= .05; //this happens 60 times a second
+      //... and each time tick 'cools off' the gun a little bit
+      if (this.gunHeat > 0) {
+          this.gunHeat -= .05;
+      }
 
     }//end update
   };
